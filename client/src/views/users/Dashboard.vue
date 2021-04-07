@@ -1,4 +1,4 @@
-// src/views/Dashboard.vue
+// src/views/users/Dashboard.vue
 
 <template>
   <div>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import AuthService from '../services/AuthService.js';
+import AuthService from '../../services/AuthService.js';
 
 export default {
   data() {

@@ -2,9 +2,10 @@
 
 import Vue from "vue";
 import Router from "vue-router";
-import Dashboard from "./views/Dashboard.vue";
+import Dashboard from "./views/users/Dashboard.vue";
 import Daftar from "./views/Daftar.vue";
 import Masuk from "./views/Masuk.vue";
+import Index from './views/Index.vue'
 
 Vue.use(Router);
 
@@ -14,7 +15,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/dashboard",
+      path: "/users/dashboard",
       name: "dashboard",
       component: Dashboard,
     },
@@ -28,5 +29,10 @@ export default new Router({
       name: "masuk",
       component: Masuk,
     },
+    {
+      path: "/",
+      name: "index",
+      component: Index,
+    }
   ],
 });
