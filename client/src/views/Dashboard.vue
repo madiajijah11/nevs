@@ -4,7 +4,7 @@
   <div>
     <h1>Hi {{ email }}</h1>
     <p>{{ secretMessage }}</p>
-    <input type="button" value="keluar" @click="keluar" />
+    <input type="button" value="Keluar" @click="keluar" />
   </div>
 </template>
 
@@ -19,8 +19,8 @@ export default {
     };
   },
   async created() {
-    if (!this.$store.getters.isLoggedIn) {
-      this.$router.push('/login');
+    if (!this.$store.getters.telahMasuk) {
+      this.$router.push('/masuk');
     }
 
     this.email = this.$store.getters.getUser.email;

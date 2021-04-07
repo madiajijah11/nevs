@@ -35,7 +35,7 @@ export default {
 
         this.$store.dispatch('masuk', { token, user });
 
-        this.$router.push('/');
+        this.$router.push('/dashboard');
       } catch (error) {
         this.msg = error.response.data.msg;
       }

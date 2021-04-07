@@ -3,14 +3,14 @@
 <template>
   <div>
     <h1>Daftar</h1>
-    <input type="text" placeholder="email" v-model="email" />
+    <input type="text" placeholder="Email" v-model="email" />
     <input type="text" placeholder="Password" v-model="password" />
     <input
       type="text"
-      placeholder="Password (repeat)"
+      placeholder="Password (ulangi)"
       v-model="confirm_password"
     />
-    <input type="button" @click="daftar" value="Sign Up" />
+    <input type="button" @click="daftar" value="Daftar" />
     <p v-if="msg">{{ msg }}</p>
   </div>
 </template>
