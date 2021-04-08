@@ -1,6 +1,6 @@
 // src/views/Masuk.vue
 <template>
-  <div class="container" id="kontainer">
+  <div class="container">
     <div class="columns">
       <div class="column">
         <div class="card-content">
@@ -31,13 +31,13 @@
             v-model="password"
           />
         </div>
-        <div class="field is-grouped">
+        <div class="field buttons">
           <button class="button is-primary" @click="masuk">Masuk</button>
+          <router-link to="/" class="button is-danger is-outlined">Kembali</router-link>
           <p class="help is-danger" v-if="msg">{{ msg }}</p>
         </div>
         <footer class="card-footer">
           <router-link to="/daftar" class="button is-info is-outlined card-footer-item">Belum punya akun?, daftar disini!</router-link>
-          <router-link to="/" class="button is-danger is-outlined card-footer-item">Kembali</router-link>
         </footer>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 <template>
   <div>
+    
     <h1>Hi {{ email }}</h1>
     <p>{{ secretMessage }}</p>
     <input type="button" value="Keluar" @click="keluar" />

@@ -1,12 +1,10 @@
 // src/views/Daftar.vue
 
 <template>
-  <div class="container" id="kontainer">
+  <div class="container">
     <div class="columns">
       <div class="column">
-        <div class="card-content">
-
-        </div>
+        <div class="card-content"></div>
       </div>
       <div class="column">
         <div class="card">
@@ -41,8 +39,11 @@
                 v-model="confirm_password"
               />
             </div>
-            <div class="field is-grouped">
+            <div class="field buttons">
               <button class="button is-primary" @click="daftar">Daftar</button>
+              <router-link to="/" class="button is-danger is-outlined"
+                >Kembali</router-link
+              >
               <p v-if="msg" class="help is-danger">{{ msg }}</p>
             </div>
             <footer class="card-footer">
@@ -51,19 +52,12 @@
                 class="button is-info is-outlined card-footer-item"
                 >Sudah punya akun?, Klik disini!!</router-link
               >
-              <router-link
-                to="/"
-                class="button is-danger is-outlined card-footer-item"
-                >Kembali</router-link
-              >
             </footer>
           </div>
         </div>
       </div>
       <div class="column">
-        <div class="card-content">
-
-        </div>
+        <div class="card-content"></div>
       </div>
     </div>
   </div>
