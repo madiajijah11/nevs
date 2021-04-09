@@ -28,7 +28,7 @@ router.post("/daftar", userMiddleware.validasiDaftar, (req, res, next) => {
               msg: err,
             });
           } else {
-            // has hashed pw => add to database
+            // hash password kemudian dimasukkan ke database
             db.query(
               `INSERT INTO pengguna (id, namalengkap, email, password, created_at) VALUES ('${uuid.v4()}', ${db.escape(
                 req.body.namalengkap
@@ -41,7 +41,7 @@ router.post("/daftar", userMiddleware.validasiDaftar, (req, res, next) => {
                   });
                 }
                 return res.status(201).send({
-                  msg: "Berhasil mendaftar!",
+                  msg: "Berhasil mendaftar!, silahkan login :).",
                 });
               }
             );
@@ -50,6 +50,7 @@ router.post("/daftar", userMiddleware.validasiDaftar, (req, res, next) => {
       }
     }
   );
+  console.log();
 });
 
 router.post("/masuk", (req, res, next) => {
@@ -83,6 +84,7 @@ router.post("/masuk", (req, res, next) => {
           if (bResult) {
             const token = jwt.sign(
               {
+                namalengkap: result[0].namalengkap,
                 email: result[0].email,
                 userId: result[0].id,
               },

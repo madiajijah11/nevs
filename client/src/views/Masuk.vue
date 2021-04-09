@@ -1,6 +1,6 @@
-// src/views/Masuk.vue
 <template>
   <div class="container">
+    <br>
     <div class="columns">
       <div class="column">
         <div class="card-content"></div>
@@ -52,6 +52,7 @@
         <div class="card-content"></div>
       </div>
     </div>
+    <br>
   </div>
 </template>
 
@@ -81,7 +82,7 @@ export default {
 
         this.$store.dispatch("masuk", { token, user });
 
-        this.$router.push("users/dashboard");
+        this.$router.push("/users/dashboard");
       } catch (error) {
         this.msg = error.response.data.msg;
       }
