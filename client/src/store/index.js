@@ -1,11 +1,6 @@
-// src/store.js (Vue CLI 1.x & 2.x) oder src/store/index.js (Vue CLI 3.x or newer)
-
-import Vue from "vue";
-import Vuex from "vuex";
-import Axios from "axios";
+import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
-
-Vue.use(Vuex);
+import Axios from "axios";
 
 const getDefaultState = () => {
   return {
@@ -14,7 +9,7 @@ const getDefaultState = () => {
   };
 };
 
-export default new Vuex.Store({
+export default createStore({
   strict: true,
   plugins: [createPersistedState()],
   state: getDefaultState(),
@@ -41,7 +36,7 @@ export default new Vuex.Store({
     masuk: ({ commit }, { token, user }) => {
       commit("SET_TOKEN", token);
       commit("SET_USER", user);
-      // set auth header
+      // SET AUTH HEADER
       Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     },
     keluar: ({ commit }) => {
