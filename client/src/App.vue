@@ -57,12 +57,6 @@
       </div>
     </nav>
     <div class="container">
-    <teleport to="#modal-daftar">
-      <Daftar />
-    </teleport>
-    <teleport to="#modal-masuk">
-      <Masuk />
-    </teleport>
     <router-view />
     </div>
     <footer class="footer">
@@ -83,19 +77,9 @@
 </template>
 
 <script>
-// import Daftar from "@/views/Daftar";
-//import Masuk from "@/views/Masuk";
 
 export default {
-  components: {
-    // Daftar,
-    //Masuk
-  },
-  data() {
-    return {
-      
-    };
-  },
+
 };
 </script>
 
