@@ -45,9 +45,9 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <button class="button is-primary" @click="modalDaftarOpen = true">
-                <strong>Daftar</strong>
-              </button>
+              <router-link class="button is-primary" to="/daftar">
+                Daftar
+              </router-link>
               <router-link class="button is-light" to="/masuk">
                 Masuk
               </router-link>
@@ -83,17 +83,17 @@
 </template>
 
 <script>
-import Daftar from "@/views/Daftar";
+// import Daftar from "@/views/Daftar";
 //import Masuk from "@/views/Masuk";
 
 export default {
   components: {
-    Daftar,
+    // Daftar,
     //Masuk
   },
   data() {
     return {
-      modalDaftarOpen: false,
+      
     };
   },
 };

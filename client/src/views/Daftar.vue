@@ -1,10 +1,15 @@
 <template>
-  <div v-if="modalDaftarOpen" class="modal-daftar-overlay">
-    <div class="modal-daftar">
-      <header class="card-header">
-        <p class="card-header-title">Silahkan daftar untuk melanjutkan.</p>
-      </header>
-      <div class="card-content">
+  <div class="container">
+      <div class="columns">
+      <div class="column">
+        <div class="card-content"></div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <header class="card-header">
+           <p class="card-header-title">Silahkan daftar untuk melanjutkan.</p>
+           </header>
+          <div class="card-content">
         <div class="field">
           <label for="email">Email</label>
           <input
@@ -49,6 +54,11 @@
             >Sudah punya akun?, Klik disini!!</router-link
           >
         </footer>
+        </div>
+        </div>
+      </div>
+        <div class="column">
+        <div class="card-content"></div>
       </div>
     </div>
   </div>
