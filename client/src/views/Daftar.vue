@@ -94,4 +94,12 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   content: "";
 }
+.modal-daftar {
+  background: white;
+  border: 1px solid #eee;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>

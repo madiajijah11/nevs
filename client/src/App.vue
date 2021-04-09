@@ -56,6 +56,7 @@
         </div>
       </div>
     </nav>
+    <div class="container">
     <teleport to="#modal-daftar">
       <Daftar />
     </teleport>
@@ -63,6 +64,7 @@
       <Masuk />
     </teleport>
     <router-view />
+    </div>
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
