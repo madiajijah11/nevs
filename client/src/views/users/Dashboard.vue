@@ -48,7 +48,11 @@
     <div class="content">
       <br />
       <div class="columns is-desktop">
-        <div class="column"><a class="box">Menu Pertama</a></div>
+        <div class="column">
+          <router-link to="/nasabahmaster" class="box"
+            >Nasabah Master <i class="fas fa-arrow-circle-right"></i
+          ></router-link>
+        </div>
         <div class="column"><a class="box">Menu Kedua</a></div>
         <div class="column"><a class="box">Menu Ketiga</a></div>
         <div class="column"><a class="box">Menu Keempat</a></div>

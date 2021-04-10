@@ -1,14 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Daftar from "../views/Daftar.vue";
-import Masuk from "../views/Masuk.vue";
-import Dashboard from "../views/users/Dashboard.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../views/Home.vue"),
   },
   {
     path: "/about",
@@ -22,17 +18,17 @@ const routes = [
   {
     path: "/daftar",
     name: "Daftar",
-    component: Daftar,
+    component: () => import("../views/Daftar.vue"),
   },
   {
     path: "/masuk",
     name: "Masuk",
-    component: Masuk,
+    component: () => import("../views/Masuk.vue"),
   },
   {
     path: "/users/dashboard",
     name: "Dashboard",
-    component: Dashboard,
+    component: () => import("../views/users/Dashboard.vue"),
   },
 ];
 
