@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <br>
+    <br />
     <div class="columns">
       <div class="column">
         <div class="card-content"></div>
@@ -36,7 +36,7 @@
               <router-link to="/" class="button is-danger is-outlined"
                 >Kembali</router-link
               >
-              <p class="help is-danger" v-if="msg">{{ msg }}</p>
+              <p class="help is-danger" v-if="message">{{ message }}</p>
             </div>
             <footer class="card-footer">
               <router-link
@@ -52,7 +52,7 @@
         <div class="card-content"></div>
       </div>
     </div>
-    <br>
+    <br />
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default {
     return {
       email: "",
       password: "",
-      msg: "",
+      message: "",
     };
   },
   methods: {
@@ -75,7 +75,7 @@ export default {
           password: this.password,
         };
         const response = await AuthService.masuk(credentials);
-        this.msg = response.msg;
+        this.message = response.message;
 
         const token = response.token;
         const user = response.user;
@@ -84,7 +84,7 @@ export default {
 
         this.$router.push("/users/dashboard");
       } catch (error) {
-        this.msg = error.response.data.msg;
+        this.message = error.response.data.message;
       }
     },
   },

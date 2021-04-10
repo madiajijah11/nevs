@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <br>
+    <br />
     <div class="columns">
       <div class="column">
         <div class="card-content"></div>
@@ -49,8 +49,10 @@
             </div>
             <div class="field buttons">
               <button class="button is-primary" @click="daftar">Daftar</button>
-              <router-link to="/" class="button is-danger is-outlined">Kembali</router-link>
-              <p v-if="msg" class="help is-danger">{{ msg }}</p>
+              <router-link to="/" class="button is-danger is-outlined"
+                >Kembali</router-link
+              >
+              <p v-if="message" class="help is-danger">{{ message }}</p>
             </div>
             <footer class="card-footer">
               <router-link
@@ -66,7 +68,7 @@
         <div class="card-content"></div>
       </div>
     </div>
-    <br>
+    <br />
   </div>
 </template>
 
@@ -80,7 +82,7 @@ export default {
       email: "",
       password: "",
       confirm_password: "",
-      msg: "",
+      message: "",
     };
   },
   methods: {
@@ -93,9 +95,9 @@ export default {
           confirm_password: this.confirm_password,
         };
         const response = await AuthService.daftar(credentials);
-        this.msg = response.msg;
+        this.message = response.message;
       } catch (error) {
-        this.msg = error.response.data.msg;
+        this.message = error.response.data.message;
       }
     },
   },

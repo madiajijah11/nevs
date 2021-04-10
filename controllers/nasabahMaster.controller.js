@@ -7,39 +7,39 @@ exports.create = (req, res, next) => {
   //VALIDASI REQUEST
   if (!req.body.nik) {
     res.status(400).send({
-      msg: "NIK tidak boleh kosong",
+      message: "NIK tidak boleh kosong",
     });
   } else if (!req.body.namalengkap) {
     res.status(400).send({
-      msg: "Nama tidak boleh kosong",
+      message: "Nama tidak boleh kosong",
     });
   } else if (!req.body.nohp) {
     res.status(400).send({
-      msg: "Nomor HP tidak boleh kosong",
+      message: "Nomor HP tidak boleh kosong",
     });
   } else if (!req.body.tmptlhr) {
     res.status(400).send({
-      msg: "Tempat lahir tidak boleh kosong",
+      message: "Tempat lahir tidak boleh kosong",
     });
   } else if (!req.body.jsklmn) {
     res.status(400).send({
-      msg: "Jenis kelamin tidak boleh kosong",
+      message: "Jenis kelamin tidak boleh kosong",
     });
   } else if (!req.body.alamat) {
     res.status(400).send({
-      msg: "Alamat tidak boleh kosong",
+      message: "Alamat tidak boleh kosong",
     });
   } else if (!req.body.agama) {
     res.status(400).send({
-      msg: "Agama tidak boleh kosong",
+      message: "Agama tidak boleh kosong",
     });
   } else if (!req.body.status) {
     res.status(400).send({
-      msg: "Status tidak boleh kosong",
+      message: "Status tidak boleh kosong",
     });
   } else if (!req.body.pekerjaan) {
     res.status(400).send({
-      msg: "Pekerjaan tidak boleh kosong",
+      message: "Pekerjaan tidak boleh kosong",
     });
     return;
   }
@@ -65,7 +65,7 @@ exports.create = (req, res, next) => {
     })
     .catch((err) => {
       res.status(500).send({
-        msg: err.msg || "Terjadi kesalahan saat menyimpan nasabahmaster.",
+        message: err.message || "Terjadi kesalahan saat menyimpan nasabahmaster.",
       });
     });
 };
@@ -82,7 +82,7 @@ exports.findAll = (req, res, next) => {
     })
     .catch((err) => {
       res.status(500).send({
-        msg: err.msg || "Terjadi kesalahan saat mencari nasabahmaster",
+        message: err.message || "Terjadi kesalahan saat mencari nasabahmaster",
       });
     });
 };
@@ -98,8 +98,8 @@ exports.findOne = (req, res, next) => {
     })
     .catch((err) => {
       res.status(500).send({
-        msg:
-          err.msg ||
+        message:
+          err.message ||
           "Terjadi kesalahan saat mencari nasabahmaster dengan id" + id,
       });
     });
@@ -116,18 +116,18 @@ exports.update = (req, res, next) => {
     .then((num) => {
       if (num === 1) {
         res.send({
-          msg: "Edit nasabahmaster berhasil.",
+          message: "Edit nasabahmaster berhasil.",
         });
       } else {
         res.send({
-          msg: `Tidak bisa edit nasabahmaster dengan id={id}. Mungkin nasabahmaster tidak ditemukan atau req.body kosong.`,
+          message: `Tidak bisa edit nasabahmaster dengan id={id}. Mungkin nasabahmaster tidak ditemukan atau req.body kosong.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        msg:
-          err.msg ||
+        message:
+          err.message ||
           "Terjadi kesalahan saat mengedit nasabahmaster dengan id" + id,
       });
     });
@@ -144,18 +144,18 @@ exports.delete = (req, res, next) => {
     .then((num) => {
       if (num === 1) {
         res.send({
-          msg: "Hapus nasabahmaster berhasil.",
+          message: "Hapus nasabahmaster berhasil.",
         });
       } else {
         res.send({
-          msg: `Tidak bisa menghapus nasabahmaster dengan id={id}. Mungkin nasabahmaster tidak ditemukan atau req.body kosong.`,
+          message: `Tidak bisa menghapus nasabahmaster dengan id={id}. Mungkin nasabahmaster tidak ditemukan atau req.body kosong.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        msg:
-          err.msg ||
+        message:
+          err.message ||
           "Terjadi kesalahan saat menghapus nasabahmaster dengan id" + id,
       });
     });
@@ -169,12 +169,12 @@ exports.deleteAll = (req, res, next) => {
       truncate: false,
     })
     .then((nums) => {
-      res.send({ msg: `${nums} nasabahmaster telah berhasil dihapus.` });
+      res.send({ message: `${nums} nasabahmaster telah berhasil dihapus.` });
     })
     .catch((err) => {
       res.status(500).send({
-        msg:
-          err.msg || "Terjadi kesalahan saat menghapus seluruh nasabahmaster",
+        message:
+          err.message || "Terjadi kesalahan saat menghapus seluruh nasabahmaster",
       });
     });
 };
