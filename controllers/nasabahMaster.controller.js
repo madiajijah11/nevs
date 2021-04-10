@@ -65,7 +65,8 @@ exports.create = (req, res, next) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Terjadi kesalahan saat menyimpan nasabahmaster.",
+        message:
+          err.message || "Terjadi kesalahan saat menyimpan nasabahmaster.",
       });
     });
 };
@@ -148,7 +149,7 @@ exports.delete = (req, res, next) => {
         });
       } else {
         res.send({
-          message: `Tidak bisa menghapus nasabahmaster dengan id={id}. Mungkin nasabahmaster tidak ditemukan atau req.body kosong.`,
+          message: `Tidak bisa menghapus nasabahmaster dengan id=${id}. Mungkin nasabahmaster tidak ditemukan atau req.body kosong.`,
         });
       }
     })
@@ -174,7 +175,8 @@ exports.deleteAll = (req, res, next) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Terjadi kesalahan saat menghapus seluruh nasabahmaster",
+          err.message ||
+          "Terjadi kesalahan saat menghapus seluruh nasabahmaster",
       });
     });
 };
