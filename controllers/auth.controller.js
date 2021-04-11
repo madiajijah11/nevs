@@ -20,7 +20,7 @@ exports.daftar = (req, res) => {
       if (req.body.roles) {
         Role.findAll({
           where: {
-            name: {
+            nama: {
               [Op.or]: req.body.roles,
             },
           },
@@ -72,14 +72,14 @@ exports.masuk = (req, res) => {
         });
       }
 
-      var token = jwt.daftar({ id: pengguna.id }, config.secret, {
+      var token = jwt.telahMasuk({ id: pengguna.id }, config.secret, {
         expiresIn: 86400, //24 Jam
       });
 
       var authorities = [];
       pengguna.getRoles().then((roles) => {
         for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE_" + roles[i].name.toUpperCase());
+          authorities.push("ROLE_" + roles[i].nama.toUpperCase());
         }
         res.status(200).send({
           id: pengguna.id,

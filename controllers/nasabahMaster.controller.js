@@ -1,5 +1,5 @@
 const db = require("../models");
-const nasabahMaster = db.nasabahMaster;
+const NasabahMaster = db.NasabahMaster;
 const Op = db.Sequelize.Op;
 
 //BUAT DAN SAVE NASABAH MASTER
@@ -45,7 +45,7 @@ exports.create = (req, res, next) => {
   }
 
   //BUAT NASABAHMASTER
-  const nasabahMaster = {
+  const NasabahMaster = {
     nik: req.body.nik,
     namalengkap: req.body.namalengkap,
     nohp: req.body.nohp,
@@ -58,8 +58,7 @@ exports.create = (req, res, next) => {
   };
 
   //SIMPAN NASABAHMASTER
-  nasabahMaster
-    .create(nasabahmaster)
+  NasabahMaster.create(nasabahmaster)
     .then((data) => {
       res.send(data);
     })
@@ -76,8 +75,7 @@ exports.findAll = (req, res, next) => {
   const nik = req.query.nik;
   var condition = nik ? { nik: { [Op.like]: `%{nik}%` } } : null;
 
-  nasabahMaster
-    .findAll({ where: condition })
+  NasabahMaster.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
@@ -92,8 +90,7 @@ exports.findAll = (req, res, next) => {
 exports.findOne = (req, res, next) => {
   const id = req.params.id;
 
-  nasabahMaster
-    .findByPk(id)
+  NasabahMaster.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -110,10 +107,9 @@ exports.findOne = (req, res, next) => {
 exports.update = (req, res, next) => {
   const id = req.params.id;
 
-  nasabahMaster
-    .update(req.body, {
-      where: { id: id },
-    })
+  NasabahMaster.update(req.body, {
+    where: { id: id },
+  })
     .then((num) => {
       if (num === 1) {
         res.send({
@@ -138,10 +134,9 @@ exports.update = (req, res, next) => {
 exports.delete = (req, res, next) => {
   const id = req.params.id;
 
-  nasabahMaster
-    .destroy({
-      where: { id: id },
-    })
+  NasabahMaster.destroy({
+    where: { id: id },
+  })
     .then((num) => {
       if (num === 1) {
         res.send({
@@ -164,11 +159,10 @@ exports.delete = (req, res, next) => {
 
 //DELETE SEMUA NASABAHMASTER
 exports.deleteAll = (req, res, next) => {
-  nasabahMaster
-    .destroy({
-      where: {},
-      truncate: false,
-    })
+  NasabahMaster.destroy({
+    where: {},
+    truncate: false,
+  })
     .then((nums) => {
       res.send({ message: `${nums} nasabahmaster telah berhasil dihapus.` });
     })
