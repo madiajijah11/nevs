@@ -1,7 +1,11 @@
 # nevs
  Node, Express, Vue, MySQL
  
-## dont forget to setting lib/db.config.js
+## dont forget to setting
+```
+lib/db.config.js
+
+```
 
 ## Project setup
 ```
