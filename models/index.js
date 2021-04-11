@@ -19,8 +19,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.pengguna = require("../models/pengguna.model")(sequelize, Sequelize);
-db.role = require("../models/role.model")(sequelize, Sequelize);
+db.pengguna = require("./pengguna.model")(sequelize, Sequelize);
+db.role = require("./role.model")(sequelize, Sequelize);
 db.nasabahmaster = require("./nasabahMaster.model")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.pengguna, {

@@ -20,9 +20,13 @@ module.exports = function (app) {
 
   app.get(
     "/api/publik/moderator",
-    [authJwt.verifToken],
+    [authJwt.verifToken, authJwt.jikaModerator],
     controller.papanModerator
   );
 
-  app.get("/api/publik/admin", [authJwt.verifToken], controller.papanAdmin);
+  app.get(
+    "/api/publik/admin",
+    [authJwt.verifToken, authJwt.jikaAdmin],
+    controller.papanAdmin
+  );
 };
