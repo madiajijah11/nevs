@@ -4,7 +4,6 @@
 ## dont forget to setting
 ```
 lib/db.config.js
-
 ```
 
 ## Project setup
