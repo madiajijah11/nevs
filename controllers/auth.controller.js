@@ -9,7 +9,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.daftar = (req, res) => {
-  //SIMPAN PENGGUNA KE DATABASE
+  // Simpan pengguna ke database
   Pengguna.create({
     namalengkap: req.body.namalengkap,
     username: req.body.username,
@@ -73,7 +73,7 @@ exports.masuk = (req, res) => {
       }
 
       var token = jwt.sign({ id: pengguna.id }, config.secret, {
-        expiresIn: 86400, //24 Jam
+        expiresIn: 86400, // 24 Jam
       });
 
       var authorities = [];

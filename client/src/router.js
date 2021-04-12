@@ -72,8 +72,8 @@ router.beforeEach((to, from, next) => {
 
   document.title = to.meta.title || "Bank Rakyat Indonesia";
 
-  // trying to access a restricted page + not logged in
-  // redirect to login page
+  // mencoba mengakses halaman terbatas + belum masuk
+  // redirect ke halaman login
   if (perluAuth && !telahMasuk) {
     next("/masuk");
   } else {
