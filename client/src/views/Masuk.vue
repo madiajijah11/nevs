@@ -13,31 +13,56 @@
             </p>
           </header>
           <div class="card-content">
-            <div class="field">
-              <label for="Email">Email</label>
-              <input
-                class="input"
-                type="email"
-                placeholder="e.g dian@example.com"
-                v-model="email"
-              />
-            </div>
-            <div class="field">
-              <label for="password">Password</label>
-              <input
-                class="input"
-                type="password"
-                placeholder="e.g abc123"
-                v-model="password"
-              />
-            </div>
-            <div class="field buttons">
-              <button class="button is-primary" @click="masuk">Masuk</button>
-              <router-link to="/" class="button is-danger is-outlined"
-                >Kembali</router-link
-              >
-              <p class="help is-danger" v-if="message">{{ message }}</p>
-            </div>
+            <form @submit.prevent="handleMasuk" action="" name="form">
+              <div class="field">
+                <label for="username">Username</label>
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="e.g dianrahmadani"
+                  v-model="pengguna.username"
+                  v-validate="'required'"
+                  name="username"
+                />
+                <div
+                  v-if="errors.has('username')"
+                  class="has-text-danger"
+                  role="alert"
+                >
+                  Username diperlukan!
+                </div>
+              </div>
+              <div class="field">
+                <label for="password">Password</label>
+                <input
+                  class="input"
+                  type="password"
+                  placeholder="e.g abc123"
+                  v-model="pengguna.password"
+                  v-validate="'required'"
+                  name="password"
+                />
+                <div
+                  v-if="errors.has('password')"
+                  class="has-text-danger"
+                  role="alert"
+                >
+                  Password diperlukan!
+                </div>
+              </div>
+              <div class="field buttons">
+                <button class="button is-primary" :disabled="loading">
+                  <span v-show="loading" class=""></span>
+                  <span>Masuk</span>
+                </button>
+                <router-link to="/" class="button is-danger is-outlined"
+                  >Kembali</router-link
+                >
+                <p class="help is-danger" v-if="message" role="alert">
+                  {{ message }}
+                </p>
+              </div>
+            </form>
             <footer class="card-footer">
               <router-link
                 to="/daftar"
@@ -57,35 +82,50 @@
 </template>
 
 <script>
-import AuthService from "@/services/AuthService.js";
+import Pengguna from "../models/pengguna";
 
 export default {
+  name: "Masuk",
   data() {
     return {
-      email: "",
-      password: "",
+      pengguna: new Pengguna("", ""),
+      loading: false,
       message: "",
     };
   },
+  computed: {
+    telahMasuk() {
+      return this.$store.state.auth.status.telahMasuk;
+    },
+  },
+  created() {
+    if (this.telahMasuk) {
+      this.$router.push("/profile");
+    }
+  },
   methods: {
-    async masuk() {
-      try {
-        const credentials = {
-          email: this.email,
-          password: this.password,
-        };
-        const response = await AuthService.masuk(credentials);
-        this.message = response.message;
-
-        const token = response.token;
-        const user = response.user;
-
-        this.$store.dispatch("masuk", { token, user });
-
-        this.$router.push("/users/dashboard");
-      } catch (error) {
-        this.message = error.response.data.message;
-      }
+    handleMasuk() {
+      this.loading = true;
+      this.$validator.validateAll().then((isValid) => {
+        if (!isValid) {
+          this.loading = false;
+          return;
+        }
+        if (this.pengguna.username && this.pengguna.password) {
+          this.$store.dispatch("auth/masuk", this.pengguna).then(
+            () => {
+              this.$router.push("/profile");
+            },
+            (error) => {
+              (this.loading = false),
+                (this.message =
+                  (error.res && error.res.data) ||
+                  error.message ||
+                  error.toString());
+            }
+          );
+        }
+      });
     },
   },
 };

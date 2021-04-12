@@ -53,6 +53,9 @@
             >Nasabah Master <i class="fas fa-arrow-circle-right"></i
           ></router-link>
         </div>
+        <div>
+          <h3>{{ konten }}</h3>
+        </div>
         <div class="column"><a class="box">Menu Kedua</a></div>
         <div class="column"><a class="box">Menu Ketiga</a></div>
         <div class="column"><a class="box">Menu Keempat</a></div>
@@ -128,24 +131,25 @@
 </template>
 
 <script>
-import AuthService from "@/services/AuthService.js";
+import PenggunaService from "../../services/PenggunaService.js";
 
 export default {
+  name: "Admin",
   data() {
     return {
-      secretMessage: "",
-      email: "",
+      konten: "",
     };
   },
-  async created() {
-    if (!this.$store.getters.telahMasuk) {
-      this.$router.push("/masuk");
-    }
-
-    this.namalengkap = this.$store.getters.getUser.namalengkap;
-    this.email = this.$store.getters.getUser.email;
-
-    this.secretMessage = await AuthService.getSecretContent();
+  mounted() {
+    PenggunaService.getPapanAdmin().then(
+      (res) => {
+        this.konten = res.data;
+      },
+      (error) => {
+        this.konten =
+          (error.res && error.res.data) || error.message || error.toString();
+      }
+    );
   },
   methods: {
     keluar() {

@@ -72,7 +72,7 @@ exports.masuk = (req, res) => {
         });
       }
 
-      var token = jwt.telahMasuk({ id: pengguna.id }, config.secret, {
+      var token = jwt.sign({ id: pengguna.id }, config.secret, {
         expiresIn: 86400, //24 Jam
       });
 

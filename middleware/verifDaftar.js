@@ -44,6 +44,7 @@ cekRoleTersedia = (req, res, next) => {
       }
     }
   }
+  next();
 };
 
 const verifDaftar = {

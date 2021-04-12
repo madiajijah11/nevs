@@ -1,19 +1,34 @@
 import axios from "axios";
 
-const url = "http://localhost:3000/api/";
+const API_URL = "http://localhost:3000/api/auth";
 
-export default {
-  masuk(credentials) {
+class AuthService {
+  masuk(pengguna) {
     return axios
-      .post(url + "masuk/", credentials)
-      .then((response) => response.data);
-  },
-  daftar(credentials) {
-    return axios
-      .post(url + "daftar/", credentials)
-      .then((response) => response.data);
-  },
-  getSecretContent() {
-    return axios.get(url + "dashboard/").then((response) => response.data);
-  },
-};
+      .post(API_URL + "masuk", {
+        username: pengguna.username,
+        password: pengguna.password,
+      })
+      .then((res) => {
+        if (res.data.accessToken) {
+          localStorage.setItem("pengguna", JSON.stringify(res.data));
+        }
+        return res.data;
+      });
+  }
+
+  keluar() {
+    localStorage.removeItem("pengguna");
+  }
+
+  daftar(pengguna) {
+    return axios.post(API_URL + "daftar", {
+      namalengkap: pengguna.namalengkap,
+      username: pengguna.username,
+      email: pengguna.email,
+      password: pengguna.password,
+    });
+  }
+}
+
+export default new AuthService();
