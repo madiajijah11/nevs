@@ -31,24 +31,36 @@ export const router = new Router({
       name: "Profile",
       // lazy-loaded
       component: () => import("./views/Profile.vue"),
+      meta: {
+        title: "Profile",
+      },
     },
     {
       path: "/akun/admin",
       name: "Admin",
       // lazy-loaded
       component: () => import("./views/PapanAdmin.vue"),
+      meta: {
+        title: "Dashboard Admin",
+      },
     },
     {
       path: "/akun/moderator",
       name: "Moderator",
       // lazy-loaded
       component: () => import("./views/PapanModerator.vue"),
+      meta: {
+        title: "Dashboard Moderator",
+      },
     },
     {
       path: "/akun/pengguna",
       name: "Pengguna",
       // lazy-loaded
       component: () => import("./views/PapanPengguna.vue"),
+      meta: {
+        title: "Dashboard Pengguna",
+      },
     },
   ],
 });
@@ -57,6 +69,8 @@ router.beforeEach((to, from, next) => {
   const PagePublik = ["/masuk", "/daftar", "/home"];
   const perluAuth = !PagePublik.includes(to.path);
   const telahMasuk = localStorage.getItem("pengguna");
+
+  document.title = to.meta.title || "Bank Rakyat Indonesia";
 
   // trying to access a restricted page + not logged in
   // redirect to login page
