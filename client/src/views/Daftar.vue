@@ -12,22 +12,6 @@
             <label for="namalengkap">Nama Lengkap</label>
             <input
               v-model="pengguna.namalengkap"
-              v-validate="'required|min:3|max:20'"
-              type="text"
-              class="form-control"
-              name="namalengkap"
-            />
-            <div
-              v-if="submitted && errors.has('username')"
-              class="alert-danger"
-            >
-              {{ errors.first("username") }}
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="namalengkap">namalengkap</label>
-            <input
-              v-model="pengguna.namalengkap"
               v-validate="'required|min:1|max:50'"
               type="text"
               class="form-control"
@@ -86,7 +70,7 @@
             </div>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary btn-block">Sign Up</button>
+            <button class="btn btn-primary btn-block">Daftar</button>
           </div>
         </div>
       </form>

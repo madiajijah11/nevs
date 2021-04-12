@@ -10,7 +10,7 @@
         <div class="form-group">
           <label for="username">Username</label>
           <input
-            v-model="user.username"
+            v-model="pengguna.username"
             v-validate="'required'"
             type="text"
             class="form-control"
@@ -21,7 +21,7 @@
             class="alert alert-danger"
             role="alert"
           >
-            Username is required!
+            Username di perlukan!
           </div>
         </div>
         <div class="form-group">
@@ -38,7 +38,7 @@
             class="alert alert-danger"
             role="alert"
           >
-            Password is required!
+            Password di perlukann!
           </div>
         </div>
         <div class="form-group">
