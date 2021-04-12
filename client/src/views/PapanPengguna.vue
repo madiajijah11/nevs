@@ -10,14 +10,14 @@
 import ServisPengguna from '../services/pengguna.service';
 
 export default {
-  name: 'Home',
+  name: 'Pengguna',
   data() {
     return {
       konten: ''
     };
   },
   mounted() {
-    ServisPengguna.getKontenPublik().then(
+    ServisPengguna.getPapanPengguna().then(
       response => {
         this.konten = response.data;
       },

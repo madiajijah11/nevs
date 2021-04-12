@@ -5,7 +5,7 @@ module.exports = {
   DB: "bankbri",
   dialect: "mysql",
   pool: {
-    max: 100,
+    max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000,

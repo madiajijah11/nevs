@@ -1,14 +1,14 @@
 import axios from "axios";
-import authHeader from "./AuthHeader";
+import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:3000/api/publik";
+const API_URL = "http://localhost:3000/api/publik/";
 
-class ServicePengguna {
-  getPublikKonten() {
+class ServisPengguna {
+  getKontenPublik() {
     return axios.get(API_URL + "semua");
   }
 
-  getPapanPenguna() {
+  getPapanPengguna() {
     return axios.get(API_URL + "pengguna", { headers: authHeader() });
   }
 
@@ -21,4 +21,4 @@ class ServicePengguna {
   }
 }
 
-export default new ServicePengguna();
+export default new ServisPengguna();

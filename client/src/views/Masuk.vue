@@ -1,132 +1,138 @@
 <template>
-  <div class="container">
-    <br />
-    <div class="columns">
-      <div class="column">
-        <div class="card-content"></div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Selamat datang, Masuk untuk melanjutkan.
-            </p>
-          </header>
-          <div class="card-content">
-            <form @submit.prevent="handleMasuk" action="" name="form">
-              <div class="field">
-                <label for="username">Username</label>
-                <input
-                  class="input"
-                  type="text"
-                  placeholder="e.g dianrahmadani"
-                  v-model="pengguna.username"
-                  v-validate="'required'"
-                  name="username"
-                />
-                <div
-                  v-if="errors.has('username')"
-                  class="has-text-danger"
-                  role="alert"
-                >
-                  Username diperlukan!
-                </div>
-              </div>
-              <div class="field">
-                <label for="password">Password</label>
-                <input
-                  class="input"
-                  type="password"
-                  placeholder="e.g abc123"
-                  v-model="pengguna.password"
-                  v-validate="'required'"
-                  name="password"
-                />
-                <div
-                  v-if="errors.has('password')"
-                  class="has-text-danger"
-                  role="alert"
-                >
-                  Password diperlukan!
-                </div>
-              </div>
-              <div class="field buttons">
-                <button class="button is-primary" :disabled="loading">
-                  <span v-show="loading" class=""></span>
-                  <span>Masuk</span>
-                </button>
-                <router-link to="/" class="button is-danger is-outlined"
-                  >Kembali</router-link
-                >
-                <p class="help is-danger" v-if="message" role="alert">
-                  {{ message }}
-                </p>
-              </div>
-            </form>
-            <footer class="card-footer">
-              <router-link
-                to="/daftar"
-                class="button is-info is-outlined card-footer-item"
-                >Belum punya akun?, daftar disini!</router-link
-              >
-            </footer>
-          </div>
+  <div class="col-md-12">
+    <div class="card card-container">
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+      <form name="form" @submit.prevent="tahanMasuk">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            v-model="user.username"
+            v-validate="'required'"
+            type="text"
+            class="form-control"
+            name="username"
+          />
+          <div
+            v-if="errors.has('username')"
+            class="alert alert-danger"
+            role="alert"
+          >Username is required!</div>
         </div>
-      </div>
-      <div class="column">
-        <div class="card-content"></div>
-      </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            v-model="pengguna.password"
+            v-validate="'required'"
+            type="password"
+            class="form-control"
+            name="password"
+          />
+          <div
+            v-if="errors.has('password')"
+            class="alert alert-danger"
+            role="alert"
+          >Password is required!</div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" :disabled="loading">
+            <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+            <span>Masuk</span>
+          </button>
+        </div>
+        <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
+        </div>
+      </form>
     </div>
-    <br />
   </div>
 </template>
 
 <script>
-import Pengguna from "../models/pengguna";
+import Pengguna from '../models/pengguna';
 
 export default {
-  name: "Masuk",
+  name: 'Masuk',
   data() {
     return {
-      pengguna: new Pengguna("", ""),
+      pengguna: new Pengguna('', ''),
       loading: false,
-      message: "",
+      message: ''
     };
   },
   computed: {
     telahMasuk() {
       return this.$store.state.auth.status.telahMasuk;
-    },
+    }
   },
   created() {
     if (this.telahMasuk) {
-      this.$router.push("/profile");
+      this.$router.push('/profile');
     }
   },
   methods: {
-    handleMasuk() {
+    tahanMasuk() {
       this.loading = true;
-      this.$validator.validateAll().then((isValid) => {
+      this.$validator.validateAll().then(isValid => {
         if (!isValid) {
           this.loading = false;
           return;
         }
+
         if (this.pengguna.username && this.pengguna.password) {
-          this.$store.dispatch("auth/masuk", this.pengguna).then(
+          this.$store.dispatch('auth/masuk', this.pengguna).then(
             () => {
-              this.$router.push("/profile");
+              this.$router.push('/profile');
             },
-            (error) => {
-              (this.loading = false),
-                (this.message =
-                  (error.res && error.res.data) ||
-                  error.message ||
-                  error.toString());
+            error => {
+              this.loading = false;
+              this.message =
+                (error.response && error.response.data) ||
+                error.message ||
+                error.toString();
             }
           );
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
+
+<style scoped>
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+.card-container.card {
+  max-width: 350px !important;
+  padding: 40px 40px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+</style>

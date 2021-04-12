@@ -1,4 +1,4 @@
-import AuthService from "../services/AuthService";
+import AuthService from "../services/auth.service";
 
 const pengguna = JSON.parse(localStorage.getItem("pengguna"));
 const initialState = pengguna
@@ -27,9 +27,9 @@ export const auth = {
     },
     daftar({ commit }, pengguna) {
       return AuthService.daftar(pengguna).then(
-        (res) => {
+        (response) => {
           commit("daftarBerhasil");
-          return Promise.resolve(res.data);
+          return Promise.resolve(response.data);
         },
         (error) => {
           commit("daftarGagal");
