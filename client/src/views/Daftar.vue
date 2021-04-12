@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card card-container">
       <div class="card-header">
-        <h4>Silahkan Daftar untuk melanjutkan</h4>
+        <h5>Silahkan Daftar</h5>
       </div>
       <div class="card-body">
         <form name="form" @submit.prevent="tahanDaftar">

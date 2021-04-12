@@ -1,37 +1,41 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
-      <h3>
-        <strong>{{ penggunaSekarang.namalengkap }}</strong> Profile
-      </h3>
-    </header>
-    <p>
-      <strong>Token:</strong>
-      {{ penggunaSekarang.accessToken.substring(0, 20) }} ...
-      {{
-        penggunaSekarang.accessToken.substr(
-          penggunaSekarang.accessToken.length - 20
-        )
-      }}
-    </p>
-    <p>
-      <strong>Id:</strong>
-      {{ penggunaSekarang.id }}
-    </p>
-    <p>
-      <strong>Id:</strong>
-      {{ penggunaSekarang.username }}
-    </p>
-    <p>
-      <strong>Email:</strong>
-      {{ penggunaSekarang.email }}
-    </p>
-    <strong>Authorities:</strong>
-    <ul>
-      <li v-for="(role, index) in penggunaSekarang.roles" :key="index">
-        {{ role }}
-      </li>
-    </ul>
+    <div class="card">
+      <header class="jumbotron">
+        <h3>
+          <strong>{{ penggunaSekarang.namalengkap }}</strong> Profile
+        </h3>
+      </header>
+      <div class="card-body">
+        <p>
+          <strong>Token:</strong>
+          {{ penggunaSekarang.accessToken.substring(0, 20) }} ...
+          {{
+            penggunaSekarang.accessToken.substr(
+              penggunaSekarang.accessToken.length - 20
+            )
+          }}
+        </p>
+        <p>
+          <strong>Id:</strong>
+          {{ penggunaSekarang.id }}
+        </p>
+        <p>
+          <strong>Id:</strong>
+          {{ penggunaSekarang.username }}
+        </p>
+        <p>
+          <strong>Email:</strong>
+          {{ penggunaSekarang.email }}
+        </p>
+        <strong>Authorities:</strong>
+        <ul>
+          <li v-for="(role, index) in penggunaSekarang.roles" :key="index">
+            {{ role }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

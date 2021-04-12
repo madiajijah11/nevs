@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <header class="jumbotron">
       <h3>{{ konten }}</h3>
     </header>
