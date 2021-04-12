@@ -3,7 +3,7 @@
  
 ## dont forget to setting
 ```
-lib/db.config.js
+config/db.config.js
 ```
 
 ## Project setup
