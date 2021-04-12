@@ -20,7 +20,9 @@
             v-if="errors.has('username')"
             class="alert alert-danger"
             role="alert"
-          >Username is required!</div>
+          >
+            Username is required!
+          </div>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -35,16 +37,23 @@
             v-if="errors.has('password')"
             class="alert alert-danger"
             role="alert"
-          >Password is required!</div>
+          >
+            Password is required!
+          </div>
         </div>
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
-            <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
             <span>Masuk</span>
           </button>
         </div>
         <div class="form-group">
-          <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
+          <div v-if="message" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
         </div>
       </form>
     </div>
@@ -52,42 +61,42 @@
 </template>
 
 <script>
-import Pengguna from '../models/pengguna';
+import Pengguna from "../models/pengguna";
 
 export default {
-  name: 'Masuk',
+  name: "Masuk",
   data() {
     return {
-      pengguna: new Pengguna('', ''),
+      pengguna: new Pengguna("", ""),
       loading: false,
-      message: ''
+      message: "",
     };
   },
   computed: {
     telahMasuk() {
       return this.$store.state.auth.status.telahMasuk;
-    }
+    },
   },
   created() {
     if (this.telahMasuk) {
-      this.$router.push('/profile');
+      this.$router.push("/profile");
     }
   },
   methods: {
     tahanMasuk() {
       this.loading = true;
-      this.$validator.validateAll().then(isValid => {
+      this.$validator.validateAll().then((isValid) => {
         if (!isValid) {
           this.loading = false;
           return;
         }
 
         if (this.pengguna.username && this.pengguna.password) {
-          this.$store.dispatch('auth/masuk', this.pengguna).then(
+          this.$store.dispatch("auth/masuk", this.pengguna).then(
             () => {
-              this.$router.push('/profile');
+              this.$router.push("/profile");
             },
-            error => {
+            (error) => {
               this.loading = false;
               this.message =
                 (error.response && error.response.data) ||
@@ -97,8 +106,8 @@ export default {
           );
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

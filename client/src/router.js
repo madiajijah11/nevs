@@ -11,7 +11,7 @@ export const router = new Router({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "Home",
       component: Home,
     },
     {
@@ -28,25 +28,25 @@ export const router = new Router({
     },
     {
       path: "/profile",
-      name: "profile",
+      name: "Profile",
       // lazy-loaded
       component: () => import("./views/Profile.vue"),
     },
     {
       path: "/admin",
-      name: "admin",
+      name: "Admin",
       // lazy-loaded
       component: () => import("./views/PapanAdmin.vue"),
     },
     {
       path: "/moderator",
-      name: "moderator",
+      name: "Moderator",
       // lazy-loaded
       component: () => import("./views/PapanModerator.vue"),
     },
     {
       path: "/pengguna",
-      name: "pengguna",
+      name: "Pengguna",
       // lazy-loaded
       component: () => import("./views/PapanPengguna.vue"),
     },

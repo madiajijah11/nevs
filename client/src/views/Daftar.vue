@@ -9,6 +9,38 @@
       <form name="form" @submit.prevent="tahanDaftar">
         <div v-if="!successful">
           <div class="form-group">
+            <label for="namalengkap">Nama Lengkap</label>
+            <input
+              v-model="pengguna.namalengkap"
+              v-validate="'required|min:3|max:20'"
+              type="text"
+              class="form-control"
+              name="namalengkap"
+            />
+            <div
+              v-if="submitted && errors.has('username')"
+              class="alert-danger"
+            >
+              {{ errors.first("username") }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="namalengkap">namalengkap</label>
+            <input
+              v-model="pengguna.namalengkap"
+              v-validate="'required|min:1|max:50'"
+              type="text"
+              class="form-control"
+              name="namalengkap"
+            />
+            <div
+              v-if="submitted && errors.has('namalengkap')"
+              class="alert-danger"
+            >
+              {{ errors.first("namalengkap") }}
+            </div>
+          </div>
+          <div class="form-group">
             <label for="username">Username</label>
             <input
               v-model="pengguna.username"
@@ -20,7 +52,9 @@
             <div
               v-if="submitted && errors.has('username')"
               class="alert-danger"
-            >{{errors.first('username')}}</div>
+            >
+              {{ errors.first("username") }}
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
@@ -31,10 +65,9 @@
               class="form-control"
               name="email"
             />
-            <div
-              v-if="submitted && errors.has('email')"
-              class="alert-danger"
-            >{{errors.first('email')}}</div>
+            <div v-if="submitted && errors.has('email')" class="alert-danger">
+              {{ errors.first("email") }}
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -48,7 +81,9 @@
             <div
               v-if="submitted && errors.has('password')"
               class="alert-danger"
-            >{{errors.first('password')}}</div>
+            >
+              {{ errors.first("password") }}
+            </div>
           </div>
           <div class="form-group">
             <button class="btn btn-primary btn-block">Sign Up</button>
@@ -60,46 +95,48 @@
         v-if="message"
         class="alert"
         :class="successful ? 'alert-success' : 'alert-danger'"
-      >{{message}}</div>
+      >
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Pengguna from '../models/pengguna';
+import Pengguna from "../models/pengguna";
 
 export default {
-  name: 'Daftar',
+  name: "Daftar",
   data() {
     return {
-      pengguna: new Pengguna('', '', ''),
+      pengguna: new Pengguna("", "", ""),
       submitted: false,
       successful: false,
-      message: ''
+      message: "",
     };
   },
   computed: {
     telahMasuk() {
       return this.$store.state.auth.status.telahMasuk;
-    }
+    },
   },
   mounted() {
     if (this.telahMasuk) {
-      this.$router.push('/profile');
+      this.$router.push("/profile");
     }
   },
   methods: {
     tahanDaftar() {
-      this.message = '';
+      this.message = "";
       this.submitted = true;
-      this.$validator.validate().then(isValid => {
+      this.$validator.validate().then((isValid) => {
         if (isValid) {
-          this.$store.dispatch('auth/daftar', this.pengguna).then(
-            data => {
+          this.$store.dispatch("auth/daftar", this.pengguna).then(
+            (data) => {
               this.message = data.message;
               this.successful = true;
             },
-            error => {
+            (error) => {
               this.message =
                 (error.response && error.response.data) ||
                 error.message ||
@@ -109,8 +146,8 @@ export default {
           );
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

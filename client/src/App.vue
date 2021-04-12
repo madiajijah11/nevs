@@ -12,10 +12,14 @@
           <router-link to="/admin" class="nav-link">Papan Admin</router-link>
         </li>
         <li v-if="tampilPapanModerator" class="nav-item">
-          <router-link to="/moderator" class="nav-link">Papan Moderator</router-link>
+          <router-link to="/moderator" class="nav-link"
+            >Papan Moderator</router-link
+          >
         </li>
         <li class="nav-item">
-          <router-link v-if="penggunaSekarang" to="/pengguna" class="nav-link">Pengguna</router-link>
+          <router-link v-if="penggunaSekarang" to="/pengguna" class="nav-link"
+            >Pengguna</router-link
+          >
         </li>
       </div>
 
@@ -61,24 +65,24 @@ export default {
     },
     tampilPapanAdmin() {
       if (this.penggunaSekarang && this.penggunaSekarang.roles) {
-        return this.penggunaSekarang.roles.includes('ROLE_ADMIN');
+        return this.penggunaSekarang.roles.includes("ROLE_ADMIN");
       }
 
       return false;
     },
     tampilPapanModerator() {
       if (this.penggunaSekarang && this.penggunaSekarang.roles) {
-        return this.penggunaSekarang.roles.includes('ROLE_MODERATOR');
+        return this.penggunaSekarang.roles.includes("ROLE_MODERATOR");
       }
 
       return false;
-    }
+    },
   },
   methods: {
     keluar() {
-      this.$store.dispatch('auth/keluar');
-      this.$router.push('/masuk');
-    }
-  }
+      this.$store.dispatch("auth/keluar");
+      this.$router.push("/masuk");
+    },
+  },
 };
 </script>
