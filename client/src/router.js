@@ -27,25 +27,25 @@ export const router = new Router({
       component: Daftar,
     },
     {
-      path: "/profile",
+      path: "/akun/profile",
       name: "Profile",
       // lazy-loaded
       component: () => import("./views/Profile.vue"),
     },
     {
-      path: "/admin",
+      path: "/akun/admin",
       name: "Admin",
       // lazy-loaded
       component: () => import("./views/PapanAdmin.vue"),
     },
     {
-      path: "/moderator",
+      path: "/akun/moderator",
       name: "Moderator",
       // lazy-loaded
       component: () => import("./views/PapanModerator.vue"),
     },
     {
-      path: "/pengguna",
+      path: "/akun/pengguna",
       name: "Pengguna",
       // lazy-loaded
       component: () => import("./views/PapanPengguna.vue"),

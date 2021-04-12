@@ -1,61 +1,66 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
-      <form name="form" @submit.prevent="tahanMasuk">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            v-model="pengguna.username"
-            v-validate="'required'"
-            type="text"
-            class="form-control"
-            name="username"
-          />
-          <div
-            v-if="errors.has('username')"
-            class="alert alert-danger"
-            role="alert"
-          >
-            Username di perlukan!
+      <div class="card-header">
+        <h4>Silahkan Masuk untuk melanjutkan</h4>
+      </div>
+      <div class="card-body">
+        <form name="form" @submit.prevent="tahanMasuk">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              v-model="pengguna.username"
+              v-validate="'required'"
+              type="text"
+              class="form-control"
+              name="username"
+            />
+            <div
+              v-if="errors.has('username')"
+              class="alert alert-danger"
+              role="alert"
+            >
+              Username di perlukan!
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            v-model="pengguna.password"
-            v-validate="'required'"
-            type="password"
-            class="form-control"
-            name="password"
-          />
-          <div
-            v-if="errors.has('password')"
-            class="alert alert-danger"
-            role="alert"
-          >
-            Password di perlukann!
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              v-model="pengguna.password"
+              v-validate="'required'"
+              type="password"
+              class="form-control"
+              name="password"
+            />
+            <div
+              v-if="errors.has('password')"
+              class="alert alert-danger"
+              role="alert"
+            >
+              Password di perlukann!
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="loading">
-            <span
-              v-show="loading"
-              class="spinner-border spinner-border-sm"
-            ></span>
-            <span>Masuk</span>
-          </button>
-        </div>
-        <div class="form-group">
-          <div v-if="message" class="alert alert-danger" role="alert">
-            {{ message }}
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" :disabled="loading">
+              <span
+                v-show="loading"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              <span>Masuk</span>
+            </button>
           </div>
-        </div>
-      </form>
+          <div class="form-group">
+            <div v-if="message" class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <router-link to="/daftar" class=""
+          >Belum Punya Akun?, klik disini.</router-link
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -79,7 +84,7 @@ export default {
   },
   created() {
     if (this.telahMasuk) {
-      this.$router.push("/profile");
+      this.$router.push("/akun/profile");
     }
   },
   methods: {
@@ -94,7 +99,7 @@ export default {
         if (this.pengguna.username && this.pengguna.password) {
           this.$store.dispatch("auth/masuk", this.pengguna).then(
             () => {
-              this.$router.push("/profile");
+              this.$router.push("/akun/profile");
             },
             (error) => {
               this.loading = false;
@@ -118,7 +123,7 @@ label {
 }
 
 .card-container.card {
-  max-width: 350px !important;
+  max-width: 450px !important;
   padding: 40px 40px;
 }
 
@@ -133,15 +138,5 @@ label {
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.profile-img-card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
 }
 </style>
