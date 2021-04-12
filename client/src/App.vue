@@ -40,7 +40,7 @@
         <li class="nav-item">
           <router-link to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
-            {{ penggunaSekarang.username }}
+            {{ penggunaSekarang.namalengkap }}
           </router-link>
         </li>
         <li class="nav-item">
