@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
   // mencoba mengakses halaman terbatas + belum masuk
   // redirect ke halaman login
   if (perluAuth && !telahMasuk) {
-    next("/masuk");
+    next("/home");
   } else {
     next();
   }
