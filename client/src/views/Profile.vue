@@ -21,7 +21,7 @@
           {{ penggunaSekarang.id }}
         </p>
         <p>
-          <strong>Id:</strong>
+          <strong>Username:</strong>
           {{ penggunaSekarang.username }}
         </p>
         <p>
