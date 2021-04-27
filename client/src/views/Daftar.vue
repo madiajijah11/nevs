@@ -110,7 +110,7 @@ export default {
   },
   mounted() {
     if (this.telahMasuk) {
-      this.$router.push("/profile");
+      this.$router.push("/akun/profile");
     }
   },
   methods: {
